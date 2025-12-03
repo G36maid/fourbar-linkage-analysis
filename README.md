@@ -1,13 +1,13 @@
 # Four-Bar Linkage Analysis
 
-[![Deploy to GitHub Pages](https://github.com/YOUR_USERNAME/fourbar-linkage-analysis/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/fourbar-linkage-analysis/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/g36maid/fourbar-linkage-analysis/actions/workflows/deploy.yml/badge.svg)](https://github.com/g36maid/fourbar-linkage-analysis/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![Python](https://img.shields.io/badge/python-3.13%2B-blue.svg)](https://www.python.org/)
 
 A comprehensive implementation of four-bar linkage mechanism analysis using Newton-Raphson numerical methods. Features both an **interactive Rust GUI simulator** for real-time visualization and **Python scripts** for generating publication-quality figures.
 
-> 🚀 **[Try the Live Demo](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)** - No installation required!
+> 🚀 **[Try the Live Demo](https://g36maid.github.io/fourbar-linkage-analysis/)** - No installation required!
 
 ![Four-Bar Linkage](figures/figure_combined_positions.png)
 
@@ -15,7 +15,7 @@ A comprehensive implementation of four-bar linkage mechanism analysis using Newt
 
 This project provides **three ways** to experience four-bar linkage analysis:
 
-1. 🌐 **[Web Version (WASM)](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)** - Run in your browser, no installation!
+1. 🌐 **[Web Version (WASM)](https://g36maid.github.io/fourbar-linkage-analysis/)** - Run in your browser, no installation!
 2. 💻 **Rust GUI Simulator** (`src/`) - Native desktop app for maximum performance
 3. 📊 **Python Analysis Scripts** (`pyscript/`) - Generate publication-quality figures
 
@@ -34,7 +34,7 @@ This project provides **three ways** to experience four-bar linkage analysis:
 
 **No installation needed!** Just open in your browser:
 
-👉 **[https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)**
+👉 **[https://g36maid.github.io/fourbar-linkage-analysis/](https://g36maid.github.io/fourbar-linkage-analysis/)**
 
 Works on any device with a modern browser (Chrome, Firefox, Safari, Edge).
 
@@ -44,7 +44,7 @@ For best performance, run the native version:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/fourbar-linkage-analysis.git
+git clone https://github.com/g36maid/fourbar-linkage-analysis.git
 cd fourbar-linkage-analysis
 
 # Run the Rust GUI simulator
@@ -315,7 +315,7 @@ This project was developed for the **Mechanisms** course at:
 
 This project is automatically deployed to GitHub Pages using GitHub Actions.
 
-**Live Demo:** [https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)
+**Live Demo:** [https://g36maid.github.io/fourbar-linkage-analysis/](https://g36maid.github.io/fourbar-linkage-analysis/)
 
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment instructions.
 
