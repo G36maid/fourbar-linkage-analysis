@@ -57,13 +57,26 @@ use wasm_bindgen::prelude::*;
 
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
-pub async fn start(canvas_id: &str) -> Result<(), wasm_bindgen::JsValue> {
+pub async fn start(canvas_id: String) -> Result<(), wasm_bindgen::JsValue> {
+    use web_sys::HtmlCanvasElement;
+
+    let document = web_sys::window()
+        .ok_or("No window")?
+        .document()
+        .ok_or("No document")?;
+
+    let canvas = document
+        .get_element_by_id(&canvas_id)
+        .ok_or("Canvas not found")?
+        .dyn_into::<HtmlCanvasElement>()
+        .map_err(|_| "Element is not a canvas")?;
+
     let web_options = eframe::WebOptions::default();
 
     eframe::WebRunner::new()
-        .start(canvas_id, web_options, Box::new(|cc| Ok(create_app(cc))))
+        .start(canvas, web_options, Box::new(|cc| Ok(create_app(cc))))
         .await
-        .map_err(|e| wasm_bindgen::JsValue::from_str(&e.to_string()))
+        .map_err(|e| format!("{:?}", e).into())
 }
 
 // =============================================================================
