@@ -45,5 +45,12 @@ cd fourbar-linkage-analysis
 
 ---
 
+## 👤 Author
+
+**鍾詠傑**  
+學號：41173058h  
+國立臺灣師範大學 機電工程學系
+
+---
 
 *Last Updated: December 2025*
