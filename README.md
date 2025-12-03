@@ -24,7 +24,6 @@ Interactive simulation and numerical analysis of four-bar linkages using Newton-
 
 ## 📥 Resources
 
-* **[📄 技術報告 (PDF Report)](docs/report.pdf)** (待生成)
 * **[📊 線上模擬器](https://g36maid.github.io/fourbar-linkage-analysis/)**
 
 ## 🛠️ Quick Start
