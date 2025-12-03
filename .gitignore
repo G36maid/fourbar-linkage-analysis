@@ -40,7 +40,7 @@ env/
 
 # uv
 .uv/
-uv.lock
+# uv.lock  # Commented out to enable CI/CD caching
 
 # IDEs
 .vscode/
