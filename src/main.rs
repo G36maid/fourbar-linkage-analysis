@@ -443,10 +443,9 @@ impl eframe::App for FourBarApp {
                 if ui
                     .checkbox(&mut self.show_trace, "Show Trace (Coupler Curve)")
                     .changed()
+                    && !self.show_trace
                 {
-                    if !self.show_trace {
-                        self.trace_points.clear();
-                    }
+                    self.trace_points.clear();
                 }
 
                 if self.show_trace {

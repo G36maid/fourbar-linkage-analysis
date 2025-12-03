@@ -208,7 +208,7 @@ impl FourBar {
     /// Check if mechanism satisfies Grashof condition
     pub fn is_grashof(&self) -> bool {
         let FourBarConfig { r1, r2, r3, r4 } = self.config;
-        let lengths = vec![r1, r2, r3, r4];
+        let lengths = [r1, r2, r3, r4];
         let s = lengths.iter().cloned().fold(f64::INFINITY, f64::min);
         let l = lengths.iter().cloned().fold(f64::NEG_INFINITY, f64::max);
         let p_q_sum: f64 = lengths.iter().sum::<f64>() - s - l;
