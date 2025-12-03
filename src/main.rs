@@ -45,38 +45,34 @@ fn main() -> Result<(), eframe::Error> {
 
 #[cfg(target_arch = "wasm32")]
 fn main() {
+    use wasm_bindgen::JsCast;
+
     // Redirect panics to console.error for debugging in browser
     console_error_panic_hook::set_once();
 
     // Initialize tracing for web logging
     tracing_wasm::set_as_global_default();
-}
 
-#[cfg(target_arch = "wasm32")]
-use wasm_bindgen::prelude::*;
-
-#[cfg(target_arch = "wasm32")]
-#[wasm_bindgen]
-pub async fn start(canvas_id: String) -> Result<(), wasm_bindgen::JsValue> {
-    use web_sys::HtmlCanvasElement;
-
-    let document = web_sys::window()
-        .ok_or("No window")?
-        .document()
-        .ok_or("No document")?;
-
-    let canvas = document
-        .get_element_by_id(&canvas_id)
-        .ok_or("Canvas not found")?
-        .dyn_into::<HtmlCanvasElement>()
-        .map_err(|_| "Element is not a canvas")?;
-
+    // Start the web app automatically
     let web_options = eframe::WebOptions::default();
 
-    eframe::WebRunner::new()
-        .start(canvas, web_options, Box::new(|cc| Ok(create_app(cc))))
-        .await
-        .map_err(|e| format!("{:?}", e).into())
+    wasm_bindgen_futures::spawn_local(async {
+        let document = web_sys::window()
+            .expect("No window")
+            .document()
+            .expect("No document");
+
+        let canvas = document
+            .get_element_by_id("the_canvas_id")
+            .expect("Failed to find canvas with id 'the_canvas_id'")
+            .dyn_into::<web_sys::HtmlCanvasElement>()
+            .expect("Element is not a canvas");
+
+        eframe::WebRunner::new()
+            .start(canvas, web_options, Box::new(|cc| Ok(create_app(cc))))
+            .await
+            .expect("failed to start eframe");
+    });
 }
 
 // =============================================================================
