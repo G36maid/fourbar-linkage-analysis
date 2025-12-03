@@ -24,7 +24,7 @@ Interactive simulation and numerical analysis of four-bar linkages using Newton-
 
 ## 📥 Resources
 
-* **[📄 技術報告 (PDF Report)](docs/report.pdf)** (待生成)
+* **[📄 技術報告 (PDF Report)](docs/report.pdf)**
 * **[📊 線上模擬器](https://g36maid.github.io/fourbar-linkage-analysis/)**
 
 ## 🛠️ Quick Start
@@ -45,5 +45,12 @@ cd fourbar-linkage-analysis
 
 ---
 
+## 👤 Author
+
+**鍾詠傑**  
+學號：41173058h  
+國立臺灣師範大學 機電工程學系
+
+---
 
 *Last Updated: December 2025*
