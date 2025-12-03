@@ -2,14 +2,30 @@
 //!
 //! Interactive simulator using egui for real-time mechanism visualization
 //! and Newton-Raphson numerical analysis.
+//!
+//! Supports both native desktop and web (WASM) deployment.
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod fourbar;
 
 use eframe::egui;
-use fourbar::{FourBar, FourBarConfig, Point2D};
+use fourbar::{FourBar, Point2D};
 
+// =============================================================================
+// App Creation (Shared between Native and WASM)
+// =============================================================================
+
+fn create_app(_cc: &eframe::CreationContext) -> Box<dyn eframe::App> {
+    // You can load fonts or images here if needed
+    Box::new(FourBarApp::new())
+}
+
+// =============================================================================
+// Native Entry Point (Desktop: Windows, macOS, Linux)
+// =============================================================================
+
+#[cfg(not(target_arch = "wasm32"))]
 fn main() -> Result<(), eframe::Error> {
     env_logger::init();
 
@@ -20,12 +36,39 @@ fn main() -> Result<(), eframe::Error> {
         ..Default::default()
     };
 
-    eframe::run_native(
-        "four_bar_sim",
-        options,
-        Box::new(|_cc| Ok(Box::new(FourBarApp::new()))),
-    )
+    eframe::run_native("four_bar_sim", options, Box::new(|cc| Ok(create_app(cc))))
 }
+
+// =============================================================================
+// WASM Entry Point (Web Browser)
+// =============================================================================
+
+#[cfg(target_arch = "wasm32")]
+fn main() {
+    // Redirect panics to console.error for debugging in browser
+    console_error_panic_hook::set_once();
+
+    // Initialize tracing for web logging
+    tracing_wasm::set_as_global_default();
+}
+
+#[cfg(target_arch = "wasm32")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen]
+pub async fn start(canvas_id: &str) -> Result<(), wasm_bindgen::JsValue> {
+    let web_options = eframe::WebOptions::default();
+
+    eframe::WebRunner::new()
+        .start(canvas_id, web_options, Box::new(|cc| Ok(create_app(cc))))
+        .await
+        .map_err(|e| wasm_bindgen::JsValue::from_str(&e.to_string()))
+}
+
+// =============================================================================
+// Application State
+// =============================================================================
 
 struct FourBarApp {
     linkage: FourBar,
@@ -85,7 +128,7 @@ impl FourBarApp {
         }
     }
 
-    fn draw_mechanism(&self, ui: &mut egui::Ui, painter: &egui::Painter, center: egui::Pos2) {
+    fn draw_mechanism(&self, _ui: &mut egui::Ui, painter: &egui::Painter, center: egui::Pos2) {
         let positions = self.linkage.get_positions();
 
         // Convert mechanism coordinates to screen coordinates
@@ -331,10 +374,8 @@ impl eframe::App for FourBarApp {
                 ui.separator();
                 ui.label("Animation:");
 
-                if ui.checkbox(&mut self.auto_play, "Auto Play").changed() {
-                    if self.auto_play {
-                        ctx.request_repaint();
-                    }
+                if ui.checkbox(&mut self.auto_play, "Auto Play").changed() && self.auto_play {
+                    ctx.request_repaint();
                 }
 
                 ui.add(

@@ -1,15 +1,23 @@
 # Four-Bar Linkage Analysis
 
+[![Deploy to GitHub Pages](https://github.com/YOUR_USERNAME/fourbar-linkage-analysis/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/fourbar-linkage-analysis/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
+[![Python](https://img.shields.io/badge/python-3.13%2B-blue.svg)](https://www.python.org/)
+
 A comprehensive implementation of four-bar linkage mechanism analysis using Newton-Raphson numerical methods. Features both an **interactive Rust GUI simulator** for real-time visualization and **Python scripts** for generating publication-quality figures.
+
+> 🚀 **[Try the Live Demo](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)** - No installation required!
 
 ![Four-Bar Linkage](figures/figure_combined_positions.png)
 
 ## 🎯 Project Overview
 
-This project provides two complementary implementations:
+This project provides **three ways** to experience four-bar linkage analysis:
 
-1. **Rust GUI Simulator** (`src/`) - Real-time interactive visualization with egui
-2. **Python Analysis Scripts** (`pyscript/`) - Static figure generation for reports
+1. 🌐 **[Web Version (WASM)](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)** - Run in your browser, no installation!
+2. 💻 **Rust GUI Simulator** (`src/`) - Native desktop app for maximum performance
+3. 📊 **Python Analysis Scripts** (`pyscript/`) - Generate publication-quality figures
 
 ### Key Features
 
@@ -22,10 +30,21 @@ This project provides two complementary implementations:
 
 ## 🚀 Quick Start
 
-### Running the Interactive Simulator (Recommended)
+### Option 1: Try Online (Easiest) 🌐
+
+**No installation needed!** Just open in your browser:
+
+👉 **[https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)**
+
+Works on any device with a modern browser (Chrome, Firefox, Safari, Edge).
+
+### Option 2: Run Native Desktop App 💻
+
+For best performance, run the native version:
 
 ```bash
-# Clone and enter the project
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/fourbar-linkage-analysis.git
 cd fourbar-linkage-analysis
 
 # Run the Rust GUI simulator
@@ -35,7 +54,7 @@ cd fourbar-linkage-analysis
 cargo run --release
 ```
 
-### Generating Report Figures (Python)
+### Option 3: Generate Report Figures (Python) 📊
 
 ```bash
 # Generate static figures for reports
@@ -43,6 +62,16 @@ cargo run --release
 
 # Figures will be saved to ./figures/
 ```
+
+**Comparison:**
+
+| Feature | Web Version | Native App | Python Scripts |
+|---------|-------------|------------|----------------|
+| Installation | ❌ None | ✅ Rust/Cargo | ✅ Python/uv |
+| Performance | ⚡ Good | ⚡⚡ Excellent | N/A |
+| Accessibility | 🌍 Anywhere | 💻 Local only | 💻 Local only |
+| Sharing | ✅ URL | ❌ | ❌ |
+| Best for | Demos, teaching | Development | Report figures |
 
 ## 📁 Project Structure
 
@@ -277,8 +306,34 @@ This project was developed for the **Mechanisms** course at:
 - [ ] Animation export (video/GIF)
 - [ ] 3D visualization mode
 - [ ] Synthesis tools (path/function generation)
-- [ ] Web version (WASM compilation)
+- [x] ~~Web version (WASM compilation)~~ ✅ **Completed!**
 - [ ] Mechanism comparison tools
+- [ ] Save/load mechanism configurations (JSON)
+- [ ] Share mechanism via URL parameters
+
+## 🌐 Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions.
+
+**Live Demo:** [https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/](https://YOUR_USERNAME.github.io/fourbar-linkage-analysis/)
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment instructions.
+
+### Local WASM Development
+
+```bash
+# Install trunk
+cargo install trunk
+
+# Add WASM target
+rustup target add wasm32-unknown-unknown
+
+# Serve locally with hot reload
+trunk serve --open
+
+# Build for production
+trunk build --release
+```
 
 ## 🤝 Contributing
 
@@ -289,6 +344,7 @@ Contributions are welcome! Areas for improvement:
 - Better visualization options
 - Documentation improvements
 - Bug fixes
+- Mobile UI/UX enhancements
 
 ## 📄 License
 

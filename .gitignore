@@ -4,6 +4,10 @@ Cargo.lock
 **/*.rs.bk
 *.pdb
 
+# WASM / Trunk build artifacts
+/dist/
+.trunk/
+
 # Python
 __pycache__/
 *.py[cod]

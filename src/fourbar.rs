@@ -3,8 +3,6 @@
 //! This module implements the Newton-Raphson numerical solver for
 //! four-bar linkage position analysis.
 
-use std::f64::consts::PI;
-
 /// Configuration parameters for a four-bar linkage
 #[derive(Debug, Clone, Copy)]
 pub struct FourBarConfig {
@@ -63,6 +61,7 @@ impl FourBar {
     }
 
     /// Create with custom configuration
+    #[allow(dead_code)]
     pub fn with_config(config: FourBarConfig) -> Self {
         Self {
             config,
@@ -101,7 +100,7 @@ impl FourBar {
         }
 
         // Newton-Raphson iteration
-        for iter in 0..self.max_iterations {
+        for _iter in 0..self.max_iterations {
             // Compute error functions
             let f1 = r2 * theta2.cos() + r3 * theta3.cos() - r4 * theta4.cos() - r1;
             let f2 = r2 * theta2.sin() + r3 * theta3.sin() - r4 * theta4.sin();
@@ -185,11 +184,11 @@ impl FourBar {
 
     /// Get joint positions in Cartesian coordinates
     pub fn get_positions(&self) -> JointPositions {
-        let FourBarConfig { r1, r2, r3, r4 } = self.config;
+        let FourBarConfig { r1, r2, r3, r4: _ } = self.config;
         let FourBarState {
             theta2,
             theta3,
-            theta4,
+            theta4: _,
         } = self.state;
 
         JointPositions {
