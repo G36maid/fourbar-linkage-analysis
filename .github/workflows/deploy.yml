@@ -75,14 +75,14 @@ jobs:
         run: cargo build --release
 
   # =============================================================================
-  # Job 2: Build WASM and Deploy to GitHub Pages
+  # Job 2: Build WASM
   # =============================================================================
-  deploy:
-    name: Build WASM & Deploy
+  build:
+    name: Build WASM
     needs: check
     runs-on: ubuntu-latest
 
-    # Only deploy on push to main branch
+    # Only build on push to main branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
@@ -143,6 +143,18 @@ jobs:
         with:
           path: "./dist"
 
+  # =============================================================================
+  # Job 3: Deploy to GitHub Pages
+  # =============================================================================
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Deploy on main branch only
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
       # -------------------------------------------------------------------------
       # Deploy to GitHub Pages
       # -------------------------------------------------------------------------
@@ -160,7 +172,7 @@ jobs:
           echo "⏰ Deployed at: $(date)"
 
   # =============================================================================
-  # Job 3: Build Status Summary (runs on PR)
+  # Job 4: Build Status Summary (runs on PR)
   # =============================================================================
   summary:
     name: Build Summary
