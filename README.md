@@ -34,6 +34,7 @@ Interactive simulation and numerical analysis of four-bar linkages using Newton-
 git clone [https://github.com/g36maid/fourbar-linkage-analysis.git](https://github.com/g36maid/fourbar-linkage-analysis.git)
 cd fourbar-linkage-analysis
 ./run.sh rust  # Run Native GUI
+```
 ## 📚 References
 
 1. Norton, R. L. (2019). *Design of Machinery*. McGraw-Hill Education.
